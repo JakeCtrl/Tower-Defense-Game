@@ -1,8 +1,14 @@
 import javafx.application.Application;
+import javafx.stage.Stage;
+
 import javafx.scene.Scene;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
+
+import javafx.application.Platform;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 public class Main extends Application {
     public static void main(String args[]){
@@ -13,6 +19,36 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+
+        // Labels allow for direct keyboard navigation
+        Label nameLb1 = new Label("Enter your name:");
+
+        TextField nameFld = new TextField();
+
+        Label msgLbl = new Label();
+        // Sets the style of the Label
+        msgLbl.setStyle("-fx-text-fill: blue;");
+
+        // Create buttons
+        Button sayHelloBtn = new Button("Say Hello");
+        Button exitBtn = new Button("Exit");
+
+        // Add event handler for the Say Hello button
+        sayHelloBtn.setOnAction(event -> {
+
+            String name = nameFld.getText();
+            if (name.trim().length() > 0 ) {
+                msgLbl.setText("Hello " + name);
+            } else {
+                msgLbl.setText("Hello there");
+            }
+
+        });
+
+        // Add event handler for the exit button
+        // Also where platform import is used
+        exitBtn.setOnAction(event -> Platform.exit());
+
 
         /*
                 The contents of the scene are arranged in a tree-like hierarchy. At the top of the hierarchy
@@ -30,12 +66,14 @@ public class Main extends Application {
         // Create a VBox node
         VBox root = new VBox();
 
+        // Set the VERTICAL spacing between children
+        root.setSpacing(5);
 
         // Create new Text node
-        Text msg = new Text("Hello JavaFX");
+        Text msg = new Text("Display text content not associated with an input");
 
         // Adds the text node to the VBox as a child node
-        root.getChildren().add(msg);
+        root.getChildren().addAll(msg,nameLb1, nameFld, msgLbl, sayHelloBtn, exitBtn);
 
         /*
                 The Scene class contains several constructors. You will use the one that lets you specify the
