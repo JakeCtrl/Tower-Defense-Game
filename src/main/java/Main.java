@@ -10,7 +10,19 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
+import javafx.scene.Group;
+
+
 public class Main extends Application {
+
+    final int APP_WIDTH = 600;
+    final int APP_HEIGHT = 300;
+
+    public Main() {
+        String name = Thread.currentThread().getName();
+        System.out.println("Main() constructor: " + name);
+    }
+
     public static void main(String args[]){
 
         Application.launch(args);
@@ -18,7 +30,16 @@ public class Main extends Application {
     }
 
     @Override
+    public void init() {
+        String name = Thread.currentThread().getName();
+        System.out.println("init() method: " + name);
+    }
+
+    @Override
     public void start(Stage primaryStage) throws Exception {
+
+        String nameThread = Thread.currentThread().getName();
+        System.out.println("start() method: " + nameThread);
 
         // Labels allow for direct keyboard navigation
         Label nameLb1 = new Label("Enter your name:");
@@ -64,16 +85,18 @@ public class Main extends Application {
          */
 
         // Create a VBox node
-        VBox root = new VBox();
+        VBox mainSceneRoot = new VBox();
 
         // Set the VERTICAL spacing between children
-        root.setSpacing(5);
+        mainSceneRoot.setSpacing(5);
 
         // Create new Text node
         Text msg = new Text("Display text content not associated with an input");
 
         // Adds the text node to the VBox as a child node
-        root.getChildren().addAll(msg,nameLb1, nameFld, msgLbl, sayHelloBtn, exitBtn);
+        mainSceneRoot.getChildren().addAll(msg,nameLb1, nameFld, msgLbl, sayHelloBtn, exitBtn);
+
+
 
         /*
                 The Scene class contains several constructors. You will use the one that lets you specify the
@@ -83,9 +106,7 @@ public class Main extends Application {
          */
 
         // Create a scene
-        Scene scene = new Scene(root, 600, 300);
-
-        // You need to set the scene to the stage by calling the setScene() method of the Stage class:
+        Scene scene = new Scene(mainSceneRoot, APP_WIDTH, APP_HEIGHT);
 
         // Set the scene to the stage
         primaryStage.setScene(scene);
@@ -95,5 +116,37 @@ public class Main extends Application {
 
         // Show the stage
         primaryStage.show();
+
+        /*
+
+                My personal code not from book may be a better way to switch between scenes, also don't
+                know if other scene needs to be exited
+         */
+        //=============================================================================== My Code
+        // Play Vbox
+        VBox playSceneRoot = new VBox();
+
+        //Play scene
+        Scene playScene = new Scene(playSceneRoot, APP_WIDTH, APP_HEIGHT);
+
+        Button playBtn = new Button("Play");
+
+        mainSceneRoot.getChildren().add(playBtn);
+
+        playBtn.setOnAction(event -> {
+
+            primaryStage.setScene(playScene);
+
+            primaryStage.show();
+
+        });
+
+
+    }
+
+    @Override
+    public void stop() {
+        String name = Thread.currentThread().getName();
+        System.out.println("stop() method: " + name);
     }
 }
