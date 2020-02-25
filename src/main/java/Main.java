@@ -1,4 +1,5 @@
 import javafx.application.Application;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import javafx.scene.Scene;
@@ -141,7 +142,19 @@ public class Main extends Application {
 
         });
 
+        // ====================================================== Messing with panes
+        SceneController controller = new SceneController(scene);
 
+        Pane newPane = new Pane();
+
+        Button backButton = new Button(("Back"));
+
+        controller.addScreen("play", newPane);
+
+        backButton.setOnAction(event -> {
+
+        });
+        // ============================================================ End of messing with panes
     }
 
     @Override
