@@ -1,13 +1,10 @@
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.StackPane;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
 import javafx.scene.Scene;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import javafx.application.Platform;
@@ -21,11 +18,14 @@ import javafx.scene.image.ImageView;
 import javafx.scene.Group;
 
 
-
 public class Main extends Application  {
 
-    final int APP_WIDTH = 600;
+    final int APP_WIDTH = 800;
     final int APP_HEIGHT = 300;
+
+    final int GAME_WIDTH = 1920;
+    final int GAME_HEIGHT = 1080;
+
 
     public Main() {
         String name = Thread.currentThread().getName();
@@ -117,12 +117,18 @@ public class Main extends Application  {
 
         // ================================================================================ Setup game Scene
         VBox gameLayout = new VBox();
-        Button tempButton = new Button("Null");
-        gameLayout.getChildren().add(tempButton);
+        Button tempButton = new Button("Back");
+
+        PlayerSprite playerSprite = new PlayerSprite();
+        gameLayout.getChildren().addAll(tempButton);
         gameLayout.setAlignment(Pos.BOTTOM_LEFT);
         BorderPane gamePane = new BorderPane();
         gamePane.setLeft(gameLayout);
-        Scene gameScene = new Scene(gamePane, 800, 800 );
+
+        BackgroundImage gameBackgroundImage = new BackgroundImage(playerSprite.getSprite(),BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        Background gameBackground = new Background(gameBackgroundImage);
+        gamePane.setBackground(gameBackground);
+        Scene gameScene = new Scene(gamePane, 1920, 1080 );
 
         playNextButton.setOnAction(event -> {
             primaryStage.setScene(gameScene);
@@ -133,6 +139,7 @@ public class Main extends Application  {
             primaryStage.setScene(playScene);
             primaryStage.show();
         });
+
 
     }
 
