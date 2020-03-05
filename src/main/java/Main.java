@@ -65,7 +65,6 @@ public class Main extends Application  {
         welcomePane.setCenter(welcomeLayout);
 
         SetupBackground animeBackgroundSetup = new SetupBackground();
-
         BackgroundImage animeBackgroundImage = new BackgroundImage(animeBackgroundSetup.getBackground("animeBack.jpg"),BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         Background animeBackground = new Background(animeBackgroundImage);
         welcomePane.setBackground(animeBackground);
@@ -83,14 +82,16 @@ public class Main extends Application  {
         diffButton.setPrefHeight(100);
         diffButton.setPrefWidth(150);
         Button loadoutButton = new Button("Loadout");
+        loadoutButton.setPrefHeight(100);
+        loadoutButton.setPrefWidth(150);
         Button welcomeBackButton = new Button("Back");
         Button playNextButton = new Button("Next");
 
         // Center Layout
         playCenterLayout.getChildren().addAll(diffButton,loadoutButton);
         playCenterLayout.setAlignment(Pos.TOP_CENTER);
-        playCenterLayout.setMargin(diffButton, new Insets(125,10,10,10));
-        playCenterLayout.setMargin(loadoutButton, new Insets(10,10,10,10));
+        playCenterLayout.setMargin(diffButton, new Insets(350,10,10,10));
+        playCenterLayout.setMargin(loadoutButton, new Insets(0,10,10,10));
 
         // Left Layout
         playLeftLayout.getChildren().add(welcomeBackButton);
@@ -104,6 +105,11 @@ public class Main extends Application  {
         playPane.setCenter(playCenterLayout);
         playPane.setLeft(playLeftLayout);
         playPane.setRight(playRightLayout);
+
+        SetupBackground playBackgroundSetup = new SetupBackground();
+        BackgroundImage playBackgroundImage = new BackgroundImage(playBackgroundSetup.getBackground("animeBack2.jpg"),BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        Background playBackground = new Background(playBackgroundImage);
+        playPane.setBackground(playBackground);
 
         Scene playScene = new Scene(playPane, GAME_WIDTH,GAME_HEIGHT);
 
