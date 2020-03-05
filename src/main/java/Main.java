@@ -74,8 +74,65 @@ public class Main extends Application  {
         primaryStage.setScene(welcomeScene);
         primaryStage.show();
 
+        //============================================================================= Setup play scene
+        VBox playCenterLayout = new VBox();
+        VBox playLeftLayout = new VBox();
+        VBox playRightLayout = new VBox();
 
+        Button diffButton = new Button("Difficulty");
+        Button loadoutButton = new Button("Loadout");
+        Button welcomeBackButton = new Button("Back");
+        Button playNextButton = new Button("Next");
 
+        // Center Layout
+        playCenterLayout.getChildren().addAll(diffButton,loadoutButton);
+        playCenterLayout.setAlignment(Pos.TOP_CENTER);
+        playCenterLayout.setMargin(diffButton, new Insets(125,10,10,10));
+        playCenterLayout.setMargin(loadoutButton, new Insets(10,10,10,10));
+
+        // Left Layout
+        playLeftLayout.getChildren().add(welcomeBackButton);
+        playLeftLayout.setMargin(welcomeBackButton, new Insets(250,100,10,10));
+
+        // Right Layout
+        playRightLayout.getChildren().add(playNextButton);
+        playLeftLayout.setMargin(playNextButton, new Insets(250,10,10,100));
+
+        BorderPane playPane = new BorderPane();
+        playPane.setCenter(playCenterLayout);
+        playPane.setLeft(playLeftLayout);
+        playPane.setRight(playRightLayout);
+
+        Scene playScene = new Scene(playPane, APP_WIDTH, APP_HEIGHT);
+
+        playButton.setOnAction(event -> {
+            primaryStage.setScene(playScene);
+            primaryStage.show();
+        });
+
+        welcomeBackButton.setOnAction(event -> {
+            primaryStage.setScene(welcomeScene);
+            primaryStage.show();
+        });
+
+        // ================================================================================ Setup game Scene
+        VBox gameLayout = new VBox();
+        Button tempButton = new Button("Null");
+        gameLayout.getChildren().add(tempButton);
+        gameLayout.setAlignment(Pos.BOTTOM_LEFT);
+        BorderPane gamePane = new BorderPane();
+        gamePane.setLeft(gameLayout);
+        Scene gameScene = new Scene(gamePane, 800, 800 );
+
+        playNextButton.setOnAction(event -> {
+            primaryStage.setScene(gameScene);
+            primaryStage.show();
+        });
+
+        tempButton.setOnAction(event -> {
+            primaryStage.setScene(playScene);
+            primaryStage.show();
+        });
 
     }
 
