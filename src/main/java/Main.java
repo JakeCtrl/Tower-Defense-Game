@@ -16,8 +16,8 @@ public class Main extends Application  {
     final int APP_WIDTH = 800;
     final int APP_HEIGHT = 300;
 
-    final int GAME_WIDTH = 1920;
-    final int GAME_HEIGHT = 1080;
+    final int GAME_WIDTH = 1280;
+    final int GAME_HEIGHT = 720;
 
 
     public Main() {
@@ -51,16 +51,26 @@ public class Main extends Application  {
         Text msg = new Text("Tower-Defence-Game 2");
 
         Button playButton = new Button("Play");
+        playButton.setPrefHeight(100);
+        playButton.setPrefWidth(150);
         Button settingButton = new Button("Settings");
+        settingButton.setPrefHeight(100);
+        settingButton.setPrefWidth(150);
         welcomeLayout.getChildren().addAll(msg,playButton,settingButton);
         welcomeLayout.setAlignment(Pos.TOP_CENTER);
         welcomeLayout.setMargin(msg, new Insets(20,10,10,10));
-        welcomeLayout.setMargin(playButton, new Insets(100,10,10,10));
+        welcomeLayout.setMargin(playButton, new Insets(300,10,10,10));
 
         BorderPane welcomePane = new BorderPane();
         welcomePane.setCenter(welcomeLayout);
 
-        Scene welcomeScene = new Scene(welcomePane, APP_WIDTH, APP_HEIGHT);
+        SetupBackground animeBackgroundSetup = new SetupBackground();
+
+        BackgroundImage animeBackgroundImage = new BackgroundImage(animeBackgroundSetup.getBackground("animeBack.jpg"),BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        Background animeBackground = new Background(animeBackgroundImage);
+        welcomePane.setBackground(animeBackground);
+
+        Scene welcomeScene = new Scene(welcomePane, GAME_WIDTH,GAME_HEIGHT);
         primaryStage.setScene(welcomeScene);
         primaryStage.show();
 
@@ -70,6 +80,8 @@ public class Main extends Application  {
         VBox playRightLayout = new VBox();
 
         Button diffButton = new Button("Difficulty");
+        diffButton.setPrefHeight(100);
+        diffButton.setPrefWidth(150);
         Button loadoutButton = new Button("Loadout");
         Button welcomeBackButton = new Button("Back");
         Button playNextButton = new Button("Next");
@@ -82,18 +94,18 @@ public class Main extends Application  {
 
         // Left Layout
         playLeftLayout.getChildren().add(welcomeBackButton);
-        playLeftLayout.setMargin(welcomeBackButton, new Insets(250,100,10,10));
+        playLeftLayout.setMargin(welcomeBackButton, new Insets(690,100,10,10));
 
         // Right Layout
         playRightLayout.getChildren().add(playNextButton);
-        playLeftLayout.setMargin(playNextButton, new Insets(250,10,10,100));
+        playLeftLayout.setMargin(playNextButton, new Insets(690,10,10,100));
 
         BorderPane playPane = new BorderPane();
         playPane.setCenter(playCenterLayout);
         playPane.setLeft(playLeftLayout);
         playPane.setRight(playRightLayout);
 
-        Scene playScene = new Scene(playPane, APP_WIDTH, APP_HEIGHT);
+        Scene playScene = new Scene(playPane, GAME_WIDTH,GAME_HEIGHT);
 
         playButton.setOnAction(event -> {
             primaryStage.setScene(playScene);
@@ -109,16 +121,16 @@ public class Main extends Application  {
         VBox gameLayout = new VBox();
         Button tempButton = new Button("Back");
 
-        GameBackground playerSprite = new GameBackground();
+        SetupBackground background = new SetupBackground();
         gameLayout.getChildren().addAll(tempButton);
         gameLayout.setAlignment(Pos.BOTTOM_LEFT);
         BorderPane gamePane = new BorderPane();
         gamePane.setLeft(gameLayout);
 
-        BackgroundImage gameBackgroundImage = new BackgroundImage(playerSprite.getSprite(),BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
+        BackgroundImage gameBackgroundImage = new BackgroundImage(background.getBackground("back2.jpg"),BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
         Background gameBackground = new Background(gameBackgroundImage);
         gamePane.setBackground(gameBackground);
-        Scene gameScene = new Scene(gamePane, 1920, 1080 );
+        Scene gameScene = new Scene(gamePane, GAME_WIDTH,GAME_HEIGHT);
 
         playNextButton.setOnAction(event -> {
             primaryStage.setScene(gameScene);
@@ -130,6 +142,16 @@ public class Main extends Application  {
             primaryStage.show();
         });
 
+        /*TODO:
+          Get fullscreen working
+          Get 2 Other resolution presets
+          Create User inputs
+          Create Collision
+          Fix scalability
+
+
+
+         */
 
     }
 

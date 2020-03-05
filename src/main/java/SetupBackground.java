@@ -5,12 +5,12 @@ import javafx.scene.image.Image;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public class GameBackground {
+public class SetupBackground {
 
 
-    public Image getSprite() throws FileNotFoundException
+    public Image getBackground(String pic) throws FileNotFoundException
     {
-        final String FILE_PATH = "src/main/resources/Images/back1.jpg";
+        final String FILE_PATH = "src/main/resources/Images/" + pic;
 
             Image image = new Image(new FileInputStream(FILE_PATH));
 
