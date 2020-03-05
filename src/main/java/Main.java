@@ -1,5 +1,4 @@
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
@@ -7,15 +6,9 @@ import javafx.stage.Stage;
 import javafx.scene.Scene;
 import javafx.scene.text.Text;
 
-import javafx.application.Platform;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
 
 import javafx.geometry.Insets;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-import javafx.scene.Group;
 
 
 public class Main extends Application  {
@@ -119,7 +112,7 @@ public class Main extends Application  {
         VBox gameLayout = new VBox();
         Button tempButton = new Button("Back");
 
-        PlayerSprite playerSprite = new PlayerSprite();
+        GameBackground playerSprite = new GameBackground();
         gameLayout.getChildren().addAll(tempButton);
         gameLayout.setAlignment(Pos.BOTTOM_LEFT);
         BorderPane gamePane = new BorderPane();

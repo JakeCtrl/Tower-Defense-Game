@@ -5,9 +5,8 @@ import javafx.scene.image.Image;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-public class PlayerSprite {
+public class GameBackground {
 
-    private ImageView imageView;
 
     public Image getSprite() throws FileNotFoundException
     {
