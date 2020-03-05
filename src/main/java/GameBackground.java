@@ -10,7 +10,7 @@ public class GameBackground {
 
     public Image getSprite() throws FileNotFoundException
     {
-        final String FILE_PATH = "src/main/resources/Icons/back1.jpg";
+        final String FILE_PATH = "src/main/resources/Images/back1.jpg";
 
             Image image = new Image(new FileInputStream(FILE_PATH));
 

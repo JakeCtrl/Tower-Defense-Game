@@ -57,9 +57,6 @@ public class Main extends Application  {
         welcomeLayout.setMargin(msg, new Insets(20,10,10,10));
         welcomeLayout.setMargin(playButton, new Insets(100,10,10,10));
 
-        // Background Image
-        //Image welcomeImage = new Image("C://Users//Ctrl//IdeaProjects//Tower-Defense-Game//src//main//resources//Icons");
-        //ImageView mv = new ImageView(welcomeImage);
         BorderPane welcomePane = new BorderPane();
         welcomePane.setCenter(welcomeLayout);
 
