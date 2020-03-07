@@ -40,12 +40,21 @@ public class Main extends Application  {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        /*TODO:
+          Get fullscreen working
+          Get 2 Other resolution presets
+          Create User inputs
+          Create Collision
+          Fix scalability
+
+         */
+
         String nameThread = Thread.currentThread().getName();
         System.out.println("start() method: " + nameThread);
 
         primaryStage.setTitle("Tower-Defence-Game");
 
-        //Setup Welcome Screen
+        //========================================================================================== Setup Welcome Screen
         VBox welcomeLayout = new VBox();
 
         Text msg = new Text("Tower-Defence-Game 2");
@@ -124,40 +133,17 @@ public class Main extends Application  {
         });
 
         // ================================================================================ Setup game Scene
-        VBox gameLayout = new VBox();
-        Button tempButton = new Button("Back");
 
-        SetupBackground background = new SetupBackground();
-        gameLayout.getChildren().addAll(tempButton);
-        gameLayout.setAlignment(Pos.BOTTOM_LEFT);
-        BorderPane gamePane = new BorderPane();
-        gamePane.setLeft(gameLayout);
-
-        BackgroundImage gameBackgroundImage = new BackgroundImage(background.getBackground("back2.jpg"),BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, BackgroundSize.DEFAULT);
-        Background gameBackground = new Background(gameBackgroundImage);
-        gamePane.setBackground(gameBackground);
-        Scene gameScene = new Scene(gamePane, GAME_WIDTH,GAME_HEIGHT);
+        GameScene gameScene = new GameScene(primaryStage);
+        gameScene.setPrevScene(playScene);
 
         playNextButton.setOnAction(event -> {
-            primaryStage.setScene(gameScene);
+            primaryStage.setScene(gameScene.getGameScene());
             primaryStage.show();
         });
 
-        tempButton.setOnAction(event -> {
-            primaryStage.setScene(playScene);
-            primaryStage.show();
-        });
-
-        /*TODO:
-          Get fullscreen working
-          Get 2 Other resolution presets
-          Create User inputs
-          Create Collision
-          Fix scalability
 
 
-
-         */
 
     }
 

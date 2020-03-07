@@ -10,7 +10,7 @@ public class SetupBackground {
 
     public Image getBackground(String pic) throws FileNotFoundException
     {
-        final String FILE_PATH = "src/main/resources/Images/" + pic;
+        final String FILE_PATH = "src/main/resources/Backgrounds/" + pic;
 
             Image image = new Image(new FileInputStream(FILE_PATH));
 
