@@ -16,8 +16,8 @@ public class SetupBackground {
 
             ImageView imageView = new ImageView(image);
 
-            imageView.setX(50);
-            imageView.setY(25);
+            imageView.setX(0);
+            imageView.setY(0);
 
             imageView.setFitHeight(455);
             imageView.setFitWidth(500);

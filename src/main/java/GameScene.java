@@ -1,4 +1,5 @@
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
@@ -14,6 +15,7 @@ public class GameScene {
     Scene prevScene;
 
     GameScene(Stage gameStage) throws FileNotFoundException {
+        Pane root = new Pane();
         VBox gameLayout = new VBox();
         Button tempButton = new Button("Back");
 
@@ -32,7 +34,6 @@ public class GameScene {
             gameStage.setScene(prevScene);
             gameStage.show();
         });
-
         /*
                 TODO:
                 1. Create a sprite on screen
@@ -40,10 +41,15 @@ public class GameScene {
                 4. Create health for sprite
                 5. Create enemy
                 6. Create bounds in which the sprite can move
-
          */
+        gamePane.getChildren().add(root);
+        Sprite sprite1 = new Sprite(0, 0, "Null");
+        sprite1.getSprite().setTranslateX(0);
+        sprite1.getSprite().setTranslateY(0);
 
-
+        // BackGround ?
+        sprite1.getSprite().setTranslateZ(1);
+        root.getChildren().add(sprite1.getSprite());
     }
 
     public void setPrevScene(Scene prev){
